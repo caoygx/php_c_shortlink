@@ -3,6 +3,30 @@ php_c_shortlink
 
 php c扩展实现的url短链接生成,php extentsion short_link
 
+
+使用方法
+$url = "http://www.abc.om/def/ghi.php";
+$pre_url = "http://a.cn";
+$arr = imgurl($url);
+$short_url = $pre_url.$arr[0];
+
+$arr类似下面的数组，返回4个可用的短链，随便取一个即可。
+
+  array(4) {
+    [0]=>
+    string(6) "9Syv1C"
+    [1]=>
+    string(6) "Tyb5GO"
+    [2]=>
+    string(6) "a5eDi1"
+    [3]=>
+    string(6) "1C0W9S"
+  }
+
+
+
+
+
 根据以下php算法改写的 c生成php扩展，在性能提升了3倍。
 
 <?php 
@@ -43,3 +67,8 @@ php c扩展实现的url短链接生成,php extentsion short_link
     $short = Short_Url::short($url);
     print_r($short);
 ?>
+
+
+
+
+
