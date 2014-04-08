@@ -5,6 +5,7 @@ php c扩展实现的url短链接生成,php extentsion short_link
 
 
 使用方法
+<pre>
 $url = "http://www.abc.om/def/ghi.php";
 $pre_url = "http://a.cn";
 $arr = imgurl($url);
@@ -23,7 +24,7 @@ $arr类似下面的数组，返回4个可用的短链，随便取一个即可。
     string(6) "1C0W9S"
   }
 
-
+</pre>
 
 
 
