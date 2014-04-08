@@ -1,20 +1,20 @@
-srcdir = /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl
-builddir = /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl
-top_srcdir = /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl
-top_builddir = /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl
+srcdir = /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink
+builddir = /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink
+top_srcdir = /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink
+top_builddir = /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink
 EGREP = /bin/grep -E
 SED = /bin/sed
-CONFIGURE_COMMAND = './configure' '--with-php-config=/usr/local/php/bin/php-config' '--enable-imgurl'
-CONFIGURE_OPTIONS = '--with-php-config=/usr/local/php/bin/php-config' '--enable-imgurl'
+CONFIGURE_COMMAND = './configure' '--with-php-config=/usr/local/php/bin/php-config'
+CONFIGURE_OPTIONS = '--with-php-config=/usr/local/php/bin/php-config'
 SHLIB_SUFFIX_NAME = so
 SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = exit 0;
 AWK = gawk
-IMGURL_SHARED_LIBADD =
-shared_objects_imgurl = imgurl.lo
-PHP_PECL_EXTENSION = imgurl
-PHP_MODULES = $(phplibdir)/imgurl.la
+shortlink_SHARED_LIBADD =
+shared_objects_shortlink = shortlink.lo
+PHP_PECL_EXTENSION = shortlink
+PHP_MODULES = $(phplibdir)/shortlink.la
 PHP_ZEND_EX =
 all_targets = $(PHP_MODULES) $(PHP_ZEND_EX)
 install_targets = install-modules install-headers
@@ -22,7 +22,7 @@ prefix = /usr/local/php
 exec_prefix = $(prefix)
 libdir = ${exec_prefix}/lib
 prefix = /usr/local/php
-phplibdir = /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl/modules
+phplibdir = /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink/modules
 phpincludedir = /usr/local/php/include/php
 CC = cc
 CFLAGS = -g -O2
@@ -162,11 +162,11 @@ distclean: clean
 
 .PHONY: all clean install distclean test
 .NOEXPORT:
-imgurl.lo: /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl/imgurl.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/down/lnmp1.0-full/php-5.3.28/ext/imgurl $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl/imgurl.c -o imgurl.lo 
-$(phplibdir)/imgurl.la: ./imgurl.la
-	$(LIBTOOL) --mode=install cp ./imgurl.la $(phplibdir)
+shortlink.lo: /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink/shortlink.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink/shortlink.c -o shortlink.lo 
+$(phplibdir)/shortlink.la: ./shortlink.la
+	$(LIBTOOL) --mode=install cp ./shortlink.la $(phplibdir)
 
-./imgurl.la: $(shared_objects_imgurl) $(IMGURL_SHARED_DEPENDENCIES)
-	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(IMGURL_SHARED_LIBADD)
+./shortlink.la: $(shared_objects_shortlink) $(SHORTLINK_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(SHORTLINK_SHARED_LIBADD)
 

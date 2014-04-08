@@ -1209,7 +1209,7 @@ ac_user_opts='
 enable_option_checking
 with_libdir
 with_php_config
-enable_imgurl
+enable_shortlink
 enable_shared
 enable_static
 enable_fast_install
@@ -1851,7 +1851,7 @@ Optional Features:
   --disable-option-checking  ignore unrecognized --enable/--with options
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
-  --enable-imgurl           Enable imgurl support
+  --enable-shortlink           Enable shortlink support
   --enable-shared=PKGS  build shared libraries default=yes
   --enable-static=PKGS  build static libraries default=yes
   --enable-fast-install=PKGS  optimize for fast installation default=yes
@@ -4433,17 +4433,17 @@ $as_echo "no" >&6; }
 
 
 
-php_enable_imgurl=no
+php_enable_shortlink=no
 
-{ $as_echo "$as_me:$LINENO: checking whether to enable imgurl support" >&5
-$as_echo_n "checking whether to enable imgurl support... " >&6; }
-@%:@ Check whether --enable-imgurl was given.
-if test "${enable_imgurl+set}" = set; then
-  enableval=$enable_imgurl; PHP_IMGURL=$enableval
+{ $as_echo "$as_me:$LINENO: checking whether to enable shortlink support" >&5
+$as_echo_n "checking whether to enable shortlink support... " >&6; }
+@%:@ Check whether --enable-shortlink was given.
+if test "${enable_shortlink+set}" = set; then
+  enableval=$enable_shortlink; PHP_SHORTLINK=$enableval
 else
   
-  PHP_IMGURL=no
-  test "$PHP_ENABLE_ALL" && PHP_IMGURL=$PHP_ENABLE_ALL
+  PHP_SHORTLINK=no
+  test "$PHP_ENABLE_ALL" && PHP_SHORTLINK=$PHP_ENABLE_ALL
 
 fi
 
@@ -4451,12 +4451,12 @@ fi
 
 ext_output="yes, shared"
 ext_shared=yes
-case $PHP_IMGURL in
+case $PHP_SHORTLINK in
 shared,*)
-  PHP_IMGURL=`echo "$PHP_IMGURL"|$SED 's/^shared,//'`
+  PHP_SHORTLINK=`echo "$PHP_SHORTLINK"|$SED 's/^shared,//'`
   ;;
 shared)
-  PHP_IMGURL=yes
+  PHP_SHORTLINK=yes
   ;;
 no)
   ext_output=no
@@ -4471,7 +4471,7 @@ esac
 
   ext_output="yes, shared"
   ext_shared=yes
-  test "$PHP_IMGURL" = "no" && PHP_IMGURL=yes
+  test "$PHP_SHORTLINK" = "no" && PHP_SHORTLINK=yes
 
 
 { $as_echo "$as_me:$LINENO: result: $ext_output" >&5
@@ -4480,13 +4480,13 @@ $as_echo "$ext_output" >&6; }
 
 
 
-if test "$PHP_IMGURL" != "no"; then
+if test "$PHP_shortlink" != "no"; then
   
                                       
     
       
                       
-  PHP_VAR_SUBST="$PHP_VAR_SUBST IMGURL_SHARED_LIBADD"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shortlink_SHARED_LIBADD"
 
   
 
@@ -4593,7 +4593,7 @@ if test "$PHP_IMGURL" != "no"; then
   ac_extra=
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" != "cli"; then
-    PHP_IMGURL_SHARED=no
+    PHP_SHORTLINK_SHARED=no
     
   
   case "" in
@@ -4614,7 +4614,7 @@ if test "$PHP_IMGURL" != "no"; then
 
 
   old_IFS=$IFS
-  for ac_src in imgurl.c; do
+  for ac_src in shortlink.c; do
   
       IFS=.
       set $ac_src
@@ -4637,13 +4637,13 @@ EOF
   done
 
 
-    EXT_STATIC="$EXT_STATIC imgurl"
+    EXT_STATIC="$EXT_STATIC shortlink"
     if test "$ext_shared" != "nocli"; then
-      EXT_CLI_STATIC="$EXT_CLI_STATIC imgurl"
+      EXT_CLI_STATIC="$EXT_CLI_STATIC shortlink"
     fi
   else
     if test "$ext_shared" = "shared" || test "$ext_shared" = "yes"; then
-      PHP_IMGURL_SHARED=yes
+      PHP_SHORTLINK_SHARED=yes
       
   case "" in
   "") ac_srcdir="$abs_srcdir/"; unset ac_bdir; ac_inc="-I. -I$abs_srcdir" ;;
@@ -4663,14 +4663,14 @@ EOF
 
 
   old_IFS=$IFS
-  for ac_src in imgurl.c; do
+  for ac_src in shortlink.c; do
   
       IFS=.
       set $ac_src
       ac_obj=$1
       IFS=$old_IFS
       
-      shared_objects_imgurl="$shared_objects_imgurl $ac_bdir$ac_obj.lo"
+      shared_objects_shortlink="$shared_objects_shortlink $ac_bdir$ac_obj.lo"
 
       case $ac_src in
         *.c) ac_comp="$b_c_pre $ac_extra $ac_inc $b_c_meta -c $ac_srcdir$ac_src -o $ac_bdir$ac_obj.$b_lo $b_c_post" ;;
@@ -4693,31 +4693,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phpimgurl.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(PHPIMGURL_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phpimgurl.so '$ext_builddir'/phpimgurl.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phpshortlink.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(PHPSHORTLINK_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phpshortlink.so '$ext_builddir'/phpshortlink.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) -L$(top_builddir)/netware -lphp5lib $(IMGURL_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) -L$(top_builddir)/netware -lphp5lib $(SHORTLINK_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(PHPIMGURL_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(PHPSHORTLINK_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phpimgurl.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phpshortlink.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phpimgurl.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phpshortlink.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_imgurl"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_shortlink"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/phpimgurl.$suffix: $ext_builddir/phpimgurl.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/phpimgurl.$suffix \$(phplibdir)
+\$(phplibdir)/phpshortlink.$suffix: $ext_builddir/phpshortlink.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/phpshortlink.$suffix \$(phplibdir)
 
-$ext_builddir/phpimgurl.$suffix: \$(shared_objects_imgurl) \$(PHPIMGURL_SHARED_DEPENDENCIES)
+$ext_builddir/phpshortlink.$suffix: \$(shared_objects_shortlink) \$(PHPSHORTLINK_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4730,31 +4730,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/imgurl.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(IMGURL_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/imgurl.so '$ext_builddir'/imgurl.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/shortlink.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(SHORTLINK_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/shortlink.so '$ext_builddir'/shortlink.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) -L$(top_builddir)/netware -lphp5lib $(URL_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) -L$(top_builddir)/netware -lphp5lib $(RTLINK_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(IMGURL_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(SHORTLINK_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/imgurl.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/shortlink.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/imgurl.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/shortlink.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_imgurl"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_shortlink"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/imgurl.$suffix: $ext_builddir/imgurl.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/imgurl.$suffix \$(phplibdir)
+\$(phplibdir)/shortlink.$suffix: $ext_builddir/shortlink.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/shortlink.$suffix \$(phplibdir)
 
-$ext_builddir/imgurl.$suffix: \$(shared_objects_imgurl) \$(IMGURL_SHARED_DEPENDENCIES)
+$ext_builddir/shortlink.$suffix: \$(shared_objects_shortlink) \$(SHORTLINK_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4763,14 +4763,14 @@ EOF
       esac
       
 cat >>confdefs.h <<_ACEOF
-@%:@define COMPILE_DL_IMGURL 1
+@%:@define COMPILE_DL_SHORTLINK 1
 _ACEOF
 
     fi
   fi
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" = "cli"; then
-    PHP_IMGURL_SHARED=no
+    PHP_SHORTLINK_SHARED=no
     case "$PHP_SAPI" in
       cgi|embed)
         
@@ -4793,7 +4793,7 @@ _ACEOF
 
 
   old_IFS=$IFS
-  for ac_src in imgurl.c; do
+  for ac_src in shortlink.c; do
   
       IFS=.
       set $ac_src
@@ -4816,7 +4816,7 @@ EOF
   done
 
 
-        EXT_STATIC="$EXT_STATIC imgurl"
+        EXT_STATIC="$EXT_STATIC shortlink"
         ;;
       *)
         
@@ -4839,7 +4839,7 @@ EOF
 
 
   old_IFS=$IFS
-  for ac_src in imgurl.c; do
+  for ac_src in shortlink.c; do
   
       IFS=.
       set $ac_src
@@ -4864,7 +4864,7 @@ EOF
 
         ;;
     esac
-    EXT_CLI_STATIC="$EXT_CLI_STATIC imgurl"
+    EXT_CLI_STATIC="$EXT_CLI_STATIC shortlink"
   fi
   
   
@@ -4873,7 +4873,7 @@ EOF
 
 
   if test "$ext_builddir" = "."; then
-    PHP_PECL_EXTENSION=imgurl
+    PHP_PECL_EXTENSION=shortlink
     
   PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
 

@@ -1,8 +1,8 @@
-imgurl.lo: /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl/imgurl.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/down/lnmp1.0-full/php-5.3.28/ext/imgurl $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/down/lnmp1.0-full/php-5.3.28/ext/imgurl/imgurl.c -o imgurl.lo 
-$(phplibdir)/imgurl.la: ./imgurl.la
-	$(LIBTOOL) --mode=install cp ./imgurl.la $(phplibdir)
+shortlink.lo: /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink/shortlink.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/down/lnmp1.0-full/php-5.3.28/ext/php_c_shortlink/shortlink.c -o shortlink.lo 
+$(phplibdir)/shortlink.la: ./shortlink.la
+	$(LIBTOOL) --mode=install cp ./shortlink.la $(phplibdir)
 
-./imgurl.la: $(shared_objects_imgurl) $(IMGURL_SHARED_DEPENDENCIES)
-	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_imgurl) $(IMGURL_SHARED_LIBADD)
+./shortlink.la: $(shared_objects_shortlink) $(SHORTLINK_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_shortlink) $(SHORTLINK_SHARED_LIBADD)
 
