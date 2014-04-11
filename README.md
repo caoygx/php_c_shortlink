@@ -3,12 +3,13 @@ php_c_shortlink
 
 php c扩展实现的url短链接生成,php extentsion short_link
 
+在此要特别感谢，香蕉和fermi的用心指导
 
 使用方法
 <pre>
 $url = "http://www.abc.om/def/ghi.php";
 $pre_url = "http://a.cn";
-$arr = imgurl($url);
+$arr = shorlink($url);
 $short_url = $pre_url.$arr[0];
 
 $arr类似下面的数组，返回4个可用的短链，随便取一个即可。

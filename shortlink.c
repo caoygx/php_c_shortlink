@@ -298,7 +298,7 @@ char* substr(char *source,int start,int length)
 char *shortlink(char *url,char *arr[]){
     char *key = "alexis";
     int i;
-    char *charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-";
+    char *charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     char md5str[33];
     md5str[0] = '\0';
