@@ -1,10 +1,10 @@
 --TEST--
-Check for imgurl presence
+Check for shortlink presence
 --SKIPIF--
-<?php if (!extension_loaded("imgurl")) print "skip"; ?>
+<?php if (!extension_loaded("shortlink")) print "skip"; ?>
 --FILE--
 <?php 
-echo "imgurl extension is available";
+echo "shortlink extension is available";
 /*
 	you can add regression tests for your extension here
 
@@ -18,4 +18,4 @@ echo "imgurl extension is available";
 */
 ?>
 --EXPECT--
-imgurl extension is available
+shortlink extension is available

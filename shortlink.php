@@ -1,10 +1,10 @@
 <?php
 $br = (php_sapi_name() == "cli")? "":"<br>";
 
-if(!extension_loaded('imgurl')) {
-	dl('imgurl.' . PHP_SHLIB_SUFFIX);
+if(!extension_loaded('shortlink')) {
+	dl('shortlink.' . PHP_SHLIB_SUFFIX);
 }
-$module = 'imgurl';
+$module = 'shortlink';
 $functions = get_extension_funcs($module);
 echo "Functions available in the test extension:$br\n";
 foreach($functions as $func) {

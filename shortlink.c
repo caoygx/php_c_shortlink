@@ -28,7 +28,6 @@
 #include "ext/standard/md5.h"
 #include "php_shortlink.h"
 #include <stdlib.h> 
-#include "md5.h"
 char *substr(char *source,int start,int length);
 char *shortlink(char *url, char *arr[]);
 

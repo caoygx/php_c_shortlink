@@ -2,12 +2,12 @@
 // vim:ft=javascript
 
 // If your extension references something external, use ARG_WITH
-// ARG_WITH("imgurl", "for imgurl support", "no");
+// ARG_WITH("shortlink", "for shortlink support", "no");
 
 // Otherwise, use ARG_ENABLE
-// ARG_ENABLE("imgurl", "enable imgurl support", "no");
+// ARG_ENABLE("shortlink", "enable shortlink support", "no");
 
-if (PHP_IMGURL != "no") {
-	EXTENSION("imgurl", "imgurl.c");
+if (PHP_SHORTLINK != "no") {
+	EXTENSION("shortlink", "shortlink.c");
 }
 
