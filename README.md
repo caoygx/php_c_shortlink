@@ -7,7 +7,7 @@ php c扩展实现的url短链接生成,php extentsion short_link
 
 安装方法 install
 
-/usr/local/php/bin/phpizei
+/usr/local/php/bin/phpize
 
 ./configure --with-php-config=/usr/local/php/bin/php-config
 
