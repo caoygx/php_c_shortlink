@@ -4,7 +4,7 @@ php_c_shortlink
 php c扩展实现的url短链接生成,php extentsion short_link
 
 在此要特别感谢，香蕉和fermi的用心指导
-
+```
 安装方法 install
 
 /usr/local/php/bin/phpize
@@ -16,7 +16,7 @@ make
 make install
 
 使用方法
-<pre>
+
 $url = "http://www.abc.om/def/ghi.php";
 $pre_url = "http://a.cn";
 $arr = shorlink($url);
@@ -35,12 +35,13 @@ $arr类似下面的数组，返回4个可用的短链，随便取一个即可。
     string(6) "1C0W9S"
   }
 
-</pre>
+```
 
 
 
 根据以下php算法改写的 c生成php扩展，在性能提升了3倍。
 
+```
 <?php 
     #短连接生成算法
     
@@ -80,7 +81,7 @@ $arr类似下面的数组，返回4个可用的短链，随便取一个即可。
     print_r($short);
 ?>
 
-
+```
 
 
 
